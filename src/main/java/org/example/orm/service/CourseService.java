@@ -1,6 +1,8 @@
 package org.example.orm.service;
 
 import org.example.orm.DTO.CourseCreateRequest;
+import org.example.orm.DTO.CourseInstructorResponse;
+import org.example.orm.DTO.CourseResponse;
 import org.example.orm.DTO.CourseUpdateRequest;
 import org.example.orm.model.Course;
 import org.example.orm.model.Instructor;
@@ -9,6 +11,7 @@ import org.example.orm.repository.InstructorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -47,7 +50,19 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    public List<Course> findAll() {
-        return courseRepository.findAll();
+    public List<CourseResponse> findAll() {
+
+        return courseRepository.findAll()
+                .stream()
+                .map(course -> new CourseResponse(
+                        course.getId(),
+                        course.getTitle(),
+                        course.getStatus(),
+                        new CourseInstructorResponse(
+                                course.getInstructor().getId(),
+                                course.getInstructor().getName()
+                        )
+                ))
+                .collect(Collectors.toList());
     }
 }
