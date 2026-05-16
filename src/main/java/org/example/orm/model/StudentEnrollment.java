@@ -1,6 +1,8 @@
 package org.example.orm.model;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "student_enrollments")
 public class StudentEnrollment {
@@ -15,6 +17,9 @@ public class StudentEnrollment {
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
+
+    @Column(name = "enrolled_at", nullable = false)
+    private LocalDateTime enrolledAt;
 
     public StudentEnrollment() {
     }
@@ -36,7 +41,9 @@ public class StudentEnrollment {
     public Course getCourse() {
         return course;
     }
-
+    public void setEnrolledAt(LocalDateTime enrolledAt) {
+        this.enrolledAt = enrolledAt;
+    }
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,5 +54,8 @@ public class StudentEnrollment {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+    public LocalDateTime getEnrolledAt() {
+        return enrolledAt;
     }
 }
