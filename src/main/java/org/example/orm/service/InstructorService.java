@@ -1,6 +1,7 @@
 package org.example.orm.service;
 
 
+import org.example.orm.DTO.CourseCreateRequest;
 import org.example.orm.DTO.InstructorCreateRequest;
 import org.example.orm.model.Instructor;
 import org.example.orm.repository.InstructorRepository;

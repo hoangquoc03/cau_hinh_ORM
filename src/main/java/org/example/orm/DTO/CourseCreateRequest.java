@@ -1,0 +1,36 @@
+package org.example.orm.DTO;
+
+import org.example.orm.model.CourseStatus;
+
+public class CourseCreateRequest {
+    private String title;
+    private CourseStatus status;
+    private Long instructorId;
+
+    public CourseCreateRequest() {
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public CourseStatus getStatus() {
+        return status;
+    }
+
+    public Long getInstructorId() {
+        return instructorId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setStatus(CourseStatus status) {
+        this.status = status;
+    }
+
+    public void setInstructorId(Long instructorId) {
+        this.instructorId = instructorId;
+    }
+}
